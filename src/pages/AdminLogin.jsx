@@ -17,11 +17,14 @@ export default function AgentLogin() {
     setLoading(true);
 
     try {
-      const res = await fetch("https://shaky-emmye-jayjay122-068ebc66.koyeb.app/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ phoneNumber, password }),
-      });
+      const res = await fetch(
+        "https://democratic-fernande-jayjay122-806162ae.koyeb.app/api/auth/login",
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ phoneNumber, password }),
+        },
+      );
 
       const data = await res.json();
 
@@ -32,7 +35,9 @@ export default function AgentLogin() {
       const role = data.user?.role;
 
       if (!["admin", "user"].includes(role)) {
-        throw new Error("Only user or admin accounts can access this dashboard.");
+        throw new Error(
+          "Only user or admin accounts can access this dashboard.",
+        );
       }
 
       localStorage.setItem("auth_token", data.token);
@@ -74,9 +79,18 @@ export default function AgentLogin() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-2">
-                <Tag icon={<KeyRound className="h-3.5 w-3.5" />} text="Read-only access" />
-                <Tag icon={<Lock className="h-3.5 w-3.5" />} text="JWT secured" />
-                <Tag icon={<Database className="h-3.5 w-3.5" />} text="MongoDB Atlas" />
+                <Tag
+                  icon={<KeyRound className="h-3.5 w-3.5" />}
+                  text="Read-only access"
+                />
+                <Tag
+                  icon={<Lock className="h-3.5 w-3.5" />}
+                  text="JWT secured"
+                />
+                <Tag
+                  icon={<Database className="h-3.5 w-3.5" />}
+                  text="MongoDB Atlas"
+                />
               </div>
 
               <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">

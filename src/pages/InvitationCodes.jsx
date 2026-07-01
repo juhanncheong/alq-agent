@@ -4,7 +4,7 @@ import Shell from "../components/Shell";
 
 const API_BASE =
   import.meta.env.VITE_API_URL ||
-  "https://shaky-emmye-jayjay122-068ebc66.koyeb.app";
+  "https://democratic-fernande-jayjay122-806162ae.koyeb.app";
 
 const REFERRAL_ENDPOINT = "/api/agent/referral-users";
 
@@ -32,8 +32,7 @@ export default function ReferralUsers() {
 
   function getAuthHeaders() {
     const token =
-      localStorage.getItem("auth_token") ||
-      localStorage.getItem("agent_token");
+      localStorage.getItem("auth_token") || localStorage.getItem("agent_token");
 
     if (!token) return null;
 
@@ -110,7 +109,9 @@ export default function ReferralUsers() {
     const qq = q.trim().toLowerCase();
 
     let list = rows.filter((u) => {
-      const referredByPhone = String(u?.referredBy?.phoneNumber || "").toLowerCase();
+      const referredByPhone = String(
+        u?.referredBy?.phoneNumber || "",
+      ).toLowerCase();
       const phone = String(u?.phoneNumber || "").toLowerCase();
       const uid = String(u?.uid || "").toLowerCase();
       const referralCode = String(u?.referralCode || "").toLowerCase();
@@ -128,8 +129,8 @@ export default function ReferralUsers() {
         refFilter === "all"
           ? true
           : refFilter === "hasReferrer"
-          ? hasReferrer
-          : !hasReferrer;
+            ? hasReferrer
+            : !hasReferrer;
 
       return matchesSearch && matchesFilter;
     });
@@ -229,7 +230,9 @@ export default function ReferralUsers() {
 
         <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
           <div className="text-xs text-white/50">My Referred Users</div>
-          <div className="mt-2 text-2xl font-semibold text-white">{totalUsers}</div>
+          <div className="mt-2 text-2xl font-semibold text-white">
+            {totalUsers}
+          </div>
           <div className="mt-2 text-xs text-white/50">
             Only users registered under your invitation code are shown
           </div>

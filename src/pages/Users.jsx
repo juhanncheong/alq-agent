@@ -4,7 +4,7 @@ import Shell from "../components/Shell";
 
 const API_BASE =
   import.meta.env.VITE_API_URL ||
-  "https://shaky-emmye-jayjay122-068ebc66.koyeb.app";
+  "https://democratic-fernande-jayjay122-806162ae.koyeb.app";
 
 const USERS_ENDPOINT = "/api/agent/users";
 
@@ -35,8 +35,7 @@ export default function AgentUsers() {
 
   function getAuthHeaders() {
     const token =
-      localStorage.getItem("agent_token") ||
-      localStorage.getItem("auth_token");
+      localStorage.getItem("agent_token") || localStorage.getItem("auth_token");
 
     if (!token) return null;
 
@@ -110,12 +109,24 @@ export default function AgentUsers() {
     return rows.filter((u) => {
       const matchesQuery =
         !qq ||
-        String(u.phoneNumber || "").toLowerCase().includes(qq) ||
-        String(u.uid || "").toLowerCase().includes(qq) ||
-        String(u._id || "").toLowerCase().includes(qq) ||
-        String(u.registeredIp || "").toLowerCase().includes(qq) ||
-        String(u?.referredBy?.phoneNumber || "").toLowerCase().includes(qq) ||
-        String(u.registeredCountry || "").toLowerCase().includes(qq);
+        String(u.phoneNumber || "")
+          .toLowerCase()
+          .includes(qq) ||
+        String(u.uid || "")
+          .toLowerCase()
+          .includes(qq) ||
+        String(u._id || "")
+          .toLowerCase()
+          .includes(qq) ||
+        String(u.registeredIp || "")
+          .toLowerCase()
+          .includes(qq) ||
+        String(u?.referredBy?.phoneNumber || "")
+          .toLowerCase()
+          .includes(qq) ||
+        String(u.registeredCountry || "")
+          .toLowerCase()
+          .includes(qq);
 
       const matchesRole =
         roleFilter === "all" ? true : String(u.role || "") === roleFilter;
@@ -299,7 +310,7 @@ export default function AgentUsers() {
                           >
                             <img
                               src={`https://flagcdn.com/24x18/${String(
-                                u.registeredCountry
+                                u.registeredCountry,
                               ).toLowerCase()}.png`}
                               alt={String(u.registeredCountry).toUpperCase()}
                               className="h-[14px] w-[18px] rounded-[2px] object-cover"
@@ -341,7 +352,8 @@ export default function AgentUsers() {
         <div className="flex flex-col gap-3 border-t border-white/10 bg-white/5 px-4 py-3 md:flex-row md:items-center md:justify-between">
           <div className="text-xs text-white/50">
             Showing {filtered.length === 0 ? 0 : (page - 1) * pageSize + 1} to{" "}
-            {Math.min(page * pageSize, filtered.length)} of {filtered.length} users
+            {Math.min(page * pageSize, filtered.length)} of {filtered.length}{" "}
+            users
           </div>
 
           <div className="flex flex-col gap-2 sm:flex-row sm:items-center">

@@ -4,7 +4,7 @@ import Shell from "../components/Shell";
 
 const API_BASE =
   import.meta.env.VITE_API_URL ||
-  "https://shaky-emmye-jayjay122-068ebc66.koyeb.app";
+  "https://democratic-fernande-jayjay122-806162ae.koyeb.app";
 
 const TRIAL_USERS_ENDPOINT = "/api/agent/trial-users";
 const TRIAL_SUMMARY_ENDPOINT = "/api/agent/users";
@@ -43,8 +43,7 @@ export default function AgentTrialBonus() {
 
   function getAuthHeaders() {
     const token =
-      localStorage.getItem("auth_token") ||
-      localStorage.getItem("agent_token");
+      localStorage.getItem("auth_token") || localStorage.getItem("agent_token");
 
     if (!token) return null;
 
@@ -105,7 +104,7 @@ export default function AgentTrialBonus() {
       if (cleanQ) params.set("q", cleanQ);
 
       const data = await fetchJSON(
-        `${API_BASE}${TRIAL_USERS_ENDPOINT}?${params.toString()}`
+        `${API_BASE}${TRIAL_USERS_ENDPOINT}?${params.toString()}`,
       );
 
       const list = Array.isArray(data?.rows) ? data.rows : [];
@@ -130,7 +129,7 @@ export default function AgentTrialBonus() {
 
     try {
       const data = await fetchJSON(
-        `${API_BASE}${TRIAL_SUMMARY_ENDPOINT}/${userId}/trial-summary`
+        `${API_BASE}${TRIAL_SUMMARY_ENDPOINT}/${userId}/trial-summary`,
       );
 
       setRows((prev) =>
@@ -146,8 +145,8 @@ export default function AgentTrialBonus() {
                 hasTrial: Boolean(data?.hasTrial),
                 isFullyRevoked: Boolean(data?.isFullyRevoked),
               }
-            : row
-        )
+            : row,
+        ),
       );
     } catch (e) {
       setError(e.message || "Failed to refresh row");
@@ -268,13 +267,19 @@ export default function AgentTrialBonus() {
               <tbody className="divide-y divide-white/10">
                 {loading ? (
                   <tr>
-                    <td colSpan={9} className="px-4 py-10 text-center text-white/50">
+                    <td
+                      colSpan={9}
+                      className="px-4 py-10 text-center text-white/50"
+                    >
                       Loading trial users...
                     </td>
                   </tr>
                 ) : rows.length === 0 ? (
                   <tr>
-                    <td colSpan={9} className="px-4 py-10 text-center text-white/50">
+                    <td
+                      colSpan={9}
+                      className="px-4 py-10 text-center text-white/50"
+                    >
                       No referred trial users found.
                     </td>
                   </tr>
@@ -297,7 +302,7 @@ export default function AgentTrialBonus() {
                           <span
                             className={classNames(
                               "rounded-xl px-2 py-1 text-xs",
-                              getStatusClass(status)
+                              getStatusClass(status),
                             )}
                           >
                             {status}
