@@ -4,7 +4,7 @@ import Shell from "../components/Shell";
 
 const API_BASE =
   import.meta.env.VITE_API_URL ||
-  "https://democratic-fernande-jayjay122-806162ae.koyeb.app";
+  "https://shaky-emmye-jayjay122-068ebc66.koyeb.app";
 
 const TRIAL_USERS_ENDPOINT = "/api/agent/trial-users";
 const TRIAL_SUMMARY_ENDPOINT = "/api/agent/users";

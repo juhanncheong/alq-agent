@@ -18,7 +18,7 @@ export default function AgentLogin() {
 
     try {
       const res = await fetch(
-        "https://democratic-fernande-jayjay122-806162ae.koyeb.app/api/auth/login",
+        "https://shaky-emmye-jayjay122-068ebc66.koyeb.app/api/auth/login",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
